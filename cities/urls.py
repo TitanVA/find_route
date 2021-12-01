@@ -5,5 +5,5 @@ from cities.views import *
 
 urlpatterns = [
     path('', home, name="home"),
-    path('<int:pk>/', home, name="detail_city"),
+    path('detail/<int:pk>/', CityDetailView.as_view(), name="detail"),
 ]

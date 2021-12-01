@@ -6,10 +6,19 @@
     <div class="row">
         <div class="col-md">
             {% for city in cities %}
-                <p>{{ city.name }}</p>
+                <p>
+                    <a href="{% url 'cities:detail' pk=city.id %}">{{ city.name }}</a>
+                </p>
             {% endfor %}
         </div>
     </div>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="fname">Город</label>
+        <input type="text" id="fname" name="name"><br>
+        <input type="submit" value="Submit">
+    </form>
 
 
 {% endblock %}
