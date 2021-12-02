@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DetailView, CreateView, UpdateView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 
 from cities.forms import HtmlForm, CityForm
 from cities.models import City
@@ -11,6 +11,7 @@ __all__ = (
     "CityDetailView",
     "CityCreateView",
     "CityUpdateView",
+    "CityDeleteView",
 )
 
 
@@ -36,9 +37,18 @@ class CityCreateView(CreateView):
     template_name = "cities/create.html"
     success_url = reverse_lazy("cities:home")
 
+
 class CityUpdateView(UpdateView):
     model = City
     form_class = CityForm
     template_name = "cities/update.html"
     success_url = reverse_lazy("cities:home")
 
+
+class CityDeleteView(DeleteView):
+    model = City
+    # template_name = "cities/delete.html"
+    success_url = reverse_lazy("cities:home")
+
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
