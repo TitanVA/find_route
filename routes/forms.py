@@ -36,7 +36,7 @@ class RouteModelForm(forms.ModelForm):
     trains = forms.ModelMultipleChoiceField(
         label="Через города", queryset=Train.objects.all(), required=False, widget=forms.SelectMultiple(attrs={
             'class': 'form-control d-none'}))
-    travel_time = forms.IntegerField(widget=forms.HiddenInput())
+    travel_time = forms.IntegerField(required=False, widget=forms.HiddenInput())
 
     class Meta:
         model = Route
