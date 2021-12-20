@@ -2,7 +2,6 @@
 {% url "cities:create" as cities_create_url %}
 {% url "trains:home" as trains_home_url %}
 {% url "list" as route_list %}
-{% url "detail" as route_detail %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -40,7 +39,7 @@
                        aria-current="page" href="{% url 'trains:home' %}">Поезда</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == route_list or request.path == route_detail %}active{% endif %}"
+                    <a class="nav-link {% if request.path == route_list %}active{% endif %}"
                        aria-current="page" href="{% url 'list' %}">Маршруты</a>
                 </li>
 
@@ -54,6 +53,15 @@
                         <li><a class="dropdown-item" href="{% url 'trains:create' %}">Новый поезд</a></li>
                     </ul>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'accounts:login' %}">Войти</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
