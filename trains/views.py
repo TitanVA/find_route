@@ -34,7 +34,7 @@ class TrainCreateView(SuccessMessageMixin, CreateView):
     form_class = TrainForm
     template_name = "trains/create.html"
     success_url = reverse_lazy("trains:home")
-    success_message = "Город успешно создан"
+    success_message = "Поезд успешно создан"
 
 
 class TrainUpdateView(SuccessMessageMixin, UpdateView):
@@ -51,7 +51,7 @@ class TrainDeleteView(DeleteView):
     success_url = reverse_lazy("trains:home")
 
     def get(self, request, *args, **kwargs):
-        messages.success(request, "Город успешно удален")
+        messages.success(request, "Поезд успешно удален")
         return self.post(request, *args, **kwargs)
 
 
